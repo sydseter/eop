@@ -1,0 +1,114 @@
+// This is from Fraser Scott's Alexa implementation https://github.com/zeroXten/alexa_threat_model_game/blob/master/cards.yaml 
+// "Forked" for availability Jan 2019
+suit_order:
+  - Spoofing
+  - Tampering
+  - Repudiation
+  - Information Disclosure
+  - Denial of Service
+  - Elevation of Privilege
+rank_order: [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
+ranks:
+  2: two
+  3: three
+  4: four
+  5: five
+  6: six
+  7: seven
+  8: eight
+  9: nine
+  10: ten
+  J: Jack
+  Q: Queen
+  K: King
+  A: Ace
+suits:
+  Spoofing:
+    2: Un atacante podría apoderarse del puerto o socket que normalmente utiliza el servidor
+    3: Un atacante podría probar una credencial tras otra y no hay nada que las ralentice (en línea o fuera de línea)
+    4: Un atacante puede conectarse de forma anónima porque esperamos que la autenticación se realice en un nivel superior
+    5: Un atacante puede confundir a un cliente porque hay demasiadas formas de identificar un servidor
+    6: Un atacante puede falsificar un servidor porque los identificadores no se almacenan en el cliente y no se verifica su coherencia al volver a conectarse (es decir, no hay persistencia de claves)
+    7: Un atacante puede conectarse a un servidor o a través de un enlace que no está autenticado (ni cifrado)
+    8: Un atacante podría robar las credenciales almacenadas en el servidor y reutilizarlas (por ejemplo, una clave se almacena en un archivo legible por todo el mundo)
+    9: Un atacante que obtiene una contraseña puede reutilizarla (use autenticadores más seguros)
+    10: Un atacante puede optar por utilizar una autenticación más débil o nula
+    J: Un atacante podría robar las credenciales almacenadas en el cliente y reutilizarlas
+    Q: Un atacante podría atacar la forma en que se actualizan o recuperan las credenciales (la recuperación de la cuenta no requiere revelar la contraseña anterior)
+    K: Su sistema viene con una contraseña de administrador predeterminada y no fuerza ningún cambio
+    A: Has inventado un nuevo ataque de Spoofing
+
+  Manipulación:
+    2: Un atacante puede aprovechar su intercambio de claves personalizado o el control de integridad que usted creó en lugar de usar criptografía estándar
+    3: Un atacante puede modificar su sistema de compilación y producir compilaciones firmadas de su software
+    4: Su código toma decisiones de control de acceso en todas partes, en lugar de hacerlo con un núcleo de seguridad
+    5: Un atacante puede reproducir datos sin ser detectado porque su código no proporciona marcas de tiempo ni números de secuencia
+    6: Un atacante puede escribir en un almacén de datos en el que se basa su código
+    7: Un atacante puede eludir los permisos porque no convierte los nombres en canónicos antes de verificar los permisos de acceso
+    8: Un atacante puede manipular datos porque no existe protección de integridad para los datos en la red
+    9: Un atacante puede proporcionar o controlar información de estado
+    10: Un atacante puede alterar la información en un almacén de datos porque tiene permisos débiles/abiertos o incluye un grupo que es equivalente a todos (“cualquier persona con una cuenta de Facebook”)
+    J: Un atacante puede escribir en algún recurso porque se otorgan permisos al mundo o no hay ACL
+    Q: Un atacante puede cambiar los parámetros más allá de un límite de confianza y después de la validación (por ejemplo, parámetros importantes en un campo oculto en HTML o pasar un puntero a una memoria crítica)
+    K: Un atacante puede cargar código dentro de su proceso a través de un punto de extensión
+    A: Has inventado un nuevo ataque de manipulación
+
+  Repudio:
+    2: Un atacante puede pasar datos a través del registro para atacar a un lector de registros, y no hay documentación sobre qué tipo de validación se realiza
+    3: Un atacante con privilegios bajos puede leer información de seguridad interesante en los registros
+    4: Un atacante puede alterar las firmas digitales porque el sistema de firma digital que está implementando es débil o usa MAC donde debería usar una firma
+    5: Un atacante puede alterar los mensajes de registro en una red porque carecen de controles de integridad sólidos
+    6: Un atacante puede crear una entrada de registro sin una marca de tiempo (o ninguna entrada de registro tiene una marca de tiempo)
+    7: Un atacante puede hacer que los registros se retuerzan y pierdan datos
+    8: Un atacante puede hacer que un registro se pierda o confunda información de seguridad
+    9: Un atacante puede utilizar una clave compartida para autenticarse como principales diferentes, confundiendo la información en los registros
+    10: Un atacante puede obtener datos arbitrarios a registros de personas externas no autenticadas (o débilmente autenticadas) sin validació
+    J: Un atacante puede editar registros y no hay forma de saberlo (quizás porque no hay una opción de latido para el sistema de registro)
+    Q: Un atacante puede decir “Yo no hice eso” y no habría forma de demostrar que está equivocado
+    K: El sistema no tiene registros
+    A: Has inventado un nuevo ataque de repudio
+
+  Divulgación de Información:
+    2: Un atacante puede cifrar archivos con fuerza bruta porque no existe ninguna defensa (defensa por ejemplo, extensión de contraseña)
+    3: Un atacante puede ver mensajes de error con contenido sensible a la seguridad
+    4: Un atacante puede leer contenido porque los mensajes (por ejemplo, un correo electrónico o una cookie HTTP) no está cifrado incluso si el canal está cifrado
+    5: Un atacante puede ser capaz de leer un documento o datos porque están cifrados con un algoritmo no estándar
+    6: Un atacante puede leer datos porque están ocultos u ocluidos (para deshacer o cambiar el seguimiento) y el usuario puede olvidar que está ahí
+    7: Un atacante puede actuar como un “intermediario” porque no autentica los puntos finales de una conexión de red
+    8: Un atacante puede acceder a la información a través de un indexador de búsqueda, un registrador u otro mecanismo similar
+    9: Un atacante puede leer información confidencial en un archivo con permisos permisivos
+    10: Un atacante puede leer información en archivos o bases de datos sin controles de acceso
+    J: Un atacante puede descubrir la clave fija que se utiliza para cifrar
+    Q: Un atacante puede leer el canal completo porque el canal (por ejemplo, HTTP o SMTP) no está cifrado.
+    K: Un atacante puede leer información de la red porque no se utiliza criptografía
+    A: Has inventado un nuevo ataque de divulgación de información
+
+  Denegación de Servicio:
+    2: Un atacante puede inutilizar o dejar de estar disponible su sistema de autenticación
+    3: Un atacante puede agotar nuestra batería fácilmente reemplazable (battery, temporary)
+    4: Un atacante puede agotar una batería que es difícil de reemplazar (sellada en un teléfono, en un dispositivo médico implantado o en un lugar de difícil acceso) (batería, persistir)
+    5: Un atacante puede gastar nuestro presupuesto en la nube (presupuesto, persistir)
+    6: Un atacante puede hacer que un servidor no esté disponible o sea inutilizable sin siquiera autenticarse, pero el problema desaparece cuando el atacante se detiene (servidor, anónimo, temporal)
+    7: Un atacante puede hacer que un cliente no esté disponible o sea inutilizable y el problema persista después de que el atacante desaparezca (cliente, autenticación, persistir)
+    8: Un atacante puede hacer que un servidor no esté disponible o sea inutilizable y el problema persista después de que el atacante desaparezca (servidor, autenticación, persistir)
+    9: Un atacante puede hacer que un cliente no esté disponible o sea inutilizable sin siquiera autenticarse y el problema persiste después de que el atacante desaparece (servidor, autenticación, persistir)
+    10: Un atacante puede hacer que un servidor no esté disponible o sea inutilizable sin siquiera autenticarse y el problema persiste después de que el atacante desaparece (servidor, anónimo, persistir)
+    J: Un atacante puede hacer que el subsistema de registro deje de funcionar
+    Q: Un atacante puede amplificar un ataque de denegación de servicio a través de este componente con una amplificación del orden de 10 a 1
+    K: Un atacante puede amplificar un ataque de denegación de servicio a través de este componente con una amplificación del orden de 100 a 1
+    A: Has inventado un nuevo ataque de denegación de servicio
+
+  Elevation of Privilege:
+    2: Un atacante ha comprometido a un proveedor de tecnología clave
+    3: Un atacante puede acceder al servicio en la nube que gestiona sus dispositivos
+    4: Un atacante puede escapar de un contenedor u otra zona de pruebas
+    5: Un atacante puede forzar los datos a través de diferentes rutas de validación que dan resultados diferentes
+    6: Un atacante podría aprovechar los permisos que usted establece, pero no utiliza
+    7: Un atacante puede proporcionar un indicador a través de un límite de confianza, en lugar de datos que puedan validarse
+    8: Un atacante puede ingresar datos que se verifican mientras aún están bajo su control y se usan más tarde al otro lado de un límite de confianza
+    9: No existe una forma razonable para que una persona que llama averigüe qué validación de datos contaminados realiza antes de pasárselos
+    10: No existe una forma razonable para que una persona que llama averigüe qué suposiciones de seguridad hace usted
+    J: Un atacante puede reflejar la entrada a un usuario, como secuencias de comandos entre sitios
+    Q: Incluye contenido generado por el usuario dentro de su página, posiblemente incluyendo el contenido de URL aleatorias
+    K: Un atacante puede inyectar un comando que el sistema ejecutará con un nivel de privilegio más alto
+    A: Has inventado un nuevo ataque de Elevación de Privilegios
